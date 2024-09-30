@@ -4,7 +4,7 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
-@Command(name = "hello")
+@Command(name = "hello", subcommands = {ColorCommand.class})
 public class HelloWorld implements Runnable {
 
     @Parameters(index = "0", defaultValue = "World")
