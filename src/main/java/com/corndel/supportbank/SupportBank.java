@@ -4,9 +4,10 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
 import com.corndel.supportbank.controllers.BillController;
+import com.corndel.supportbank.controllers.CurrencyController;
 import com.corndel.supportbank.controllers.TransactionController;
 
-@Command(name = "supportbank", subcommands = {BillController.class, TransactionController.class})
+@Command(name = "supportbank", subcommands = {BillController.class, CurrencyController.class, TransactionController.class})
 public class SupportBank {
 
     public static void main(String[] args) {
