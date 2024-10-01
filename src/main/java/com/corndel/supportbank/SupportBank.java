@@ -1,8 +1,16 @@
 package com.corndel.supportbank;
 
+import picocli.CommandLine;
+import picocli.CommandLine.Command;
+
+import com.corndel.supportbank.controllers.BillController;
+
+@Command(name = "supportbank", subcommands = {BillController.class})
 public class SupportBank {
 
-  public static void main(String[] args) {
-    System.out.println("Build your CLI here!");
-  }
+    public static void main(String[] args) {
+        CommandLine cli = new CommandLine(new SupportBank());
+        int exitCode = cli.execute(args);
+        System.exit(exitCode);
+    }
 }
