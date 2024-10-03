@@ -5,7 +5,7 @@ import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
 @Command(name="convert")
-public class ConvertService implements Runnable {
+public class CurrencyConvertService implements Runnable {
 
     @Parameters(index="0")
     private int amount;

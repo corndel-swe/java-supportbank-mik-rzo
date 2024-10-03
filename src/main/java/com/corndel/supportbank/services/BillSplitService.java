@@ -6,7 +6,7 @@ import picocli.CommandLine.Parameters;
 import com.corndel.supportbank.models.BillModel;
 
 @Command(name = "split")
-public class SplitService implements Runnable {
+public class BillSplitService implements Runnable {
 
     @Parameters(index = "0")
     private double total;
