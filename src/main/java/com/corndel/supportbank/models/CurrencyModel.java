@@ -22,12 +22,17 @@ public class CurrencyModel {
         JsonNode ratesNode = tree.get("rates");
 
         // convert jsonNode to a map
-        Map<String, Double> rates = objectMapper.convertValue(ratesNode, new TypeReference<Map<String, Double>>() {});
+        Map<String, Double> rates = objectMapper.convertValue(ratesNode, new TypeReference<Map<String, Double>>() {
+        });
 
         return rates;
     }
 
     public Map<String, Double> getExchangeRates() {
         return this.exchangeRates;
+    }
+
+    public double conversion(Double amount, String convertFrom, String convertTo) {
+        return amount * (this.exchangeRates.get(convertTo) / this.exchangeRates.get(convertFrom));
     }
 }
