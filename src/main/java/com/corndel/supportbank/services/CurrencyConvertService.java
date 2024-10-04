@@ -29,7 +29,7 @@ public class CurrencyConvertService implements Runnable {
 
             // invoke conversion
             Double convertedAmount = currency.conversion(amount, convertFrom, convertTo);
-            System.out.printf("%.2f %s is equivalent to %.2f %s", amount, convertFrom, convertedAmount, convertTo);
+            System.out.printf("%.2f %s is equivalent to %.2f %s%n", amount, convertFrom, convertedAmount, convertTo);
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
