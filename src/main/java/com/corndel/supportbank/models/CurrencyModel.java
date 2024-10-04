@@ -1,35 +1,38 @@
 package com.corndel.supportbank.models;
 
+import java.util.Map;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.core.type.TypeReference;
+
 public class CurrencyModel {
-    private final double amountBeforeConversion;
-    private final String convertFrom;
-    private final double amountAfterConversion;
-    private final String convertTo;
+    private final Map<String, Double> exchangeRates;
 
-    public CurrencyModel(int amountBeforeConversion, String convertFrom, String convertTo) {
-        this.amountBeforeConversion = amountBeforeConversion;
-        this.convertFrom = convertFrom;
-        this.amountAfterConversion = conversion(amountBeforeConversion);
-        this.convertTo = convertTo;
+    public CurrencyModel(String json) throws Exception {
+        this.exchangeRates = retrieveExchangeRates(json);
     }
 
-    public double getAmountBeforeConversion() {
-        return this.amountBeforeConversion;
+    private Map<String, Double> retrieveExchangeRates(String json) throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        var tree = objectMapper.readTree(json);
+
+        // retrieve currency rates from json
+        JsonNode ratesNode = tree.get("rates");
+
+        // convert jsonNode to a map
+        Map<String, Double> rates = objectMapper.convertValue(ratesNode, new TypeReference<Map<String, Double>>() {
+        });
+
+        return rates;
     }
 
-    public String getConvertFrom() {
-        return this.convertFrom;
+    public Map<String, Double> getExchangeRates() {
+        return this.exchangeRates;
     }
 
-    public double getAmountAfterConversion() {
-        return this.amountAfterConversion;
-    }
-
-    public String getConvertTo() {
-        return this.convertTo;
-    }
-
-    private double conversion(double amountBeforeConversion) {
-        return (amountBeforeConversion * 100 * 753) / 100000;
+    public double conversion(Double amount, String convertFrom, String convertTo) {
+        return amount * (this.exchangeRates.get(convertTo) / this.exchangeRates.get(convertFrom));
     }
 }

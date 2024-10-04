@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 @Command(name = "list")
-public class ListService implements Runnable {
+public class TransactionListService implements Runnable {
 
     @Parameters(index = "0")
     private String fileName;

@@ -1,8 +1,8 @@
 package com.corndel.supportbank.controllers;
 
-import com.corndel.supportbank.services.SplitService;
+import com.corndel.supportbank.services.BillSplitService;
 import picocli.CommandLine.Command;
 
-@Command(name = "bill", subcommands = {SplitService.class})
+@Command(name = "bill", subcommands = {BillSplitService.class})
 public class BillController {
 }

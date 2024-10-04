@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 @Command(name = "summarise")
-public class SummariseService implements Runnable {
+public class TransactionSummariseService implements Runnable {
 
     @Parameters(index = "0")
     private String fileName;
